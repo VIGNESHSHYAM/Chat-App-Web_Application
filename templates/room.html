@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-LesPp4a0VpJQ4/iwHxhSnFP5gAlmNJtBlu5LfddBnp4AlCt8TGlZBhn6UdA+Jg5gwjZF7sFrjD/Wx5Wi6NTluA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div class="container">
+<div class="logo-container">
+  <img src="{{ url_for('static', filename='logo2.png') }}" alt="Logo2" class="logo">
+  <p class="logo-text">Chat App</p>
+
+</div>
+<div class="message-box">
+<h2>Chat Room: {{ code }}</h2>
+<div class="messages" id="messages"></div>
+<div class="inputs">
+<input type="text" placeholder="Type a message..." name="message" id="message" />
+<label for="image-input" class="file-label">
+  <i class="fas fa-paperclip"></i> Choose Image
+  <input type="file" id="image-input" accept="image/*" />
+</label>
+<button type="button" name="send" id="send-btn" onClick="sendMessage()">
+  <i class="fas fa-arrow-alt-circle-right"></i> Send
+</button>
+</div>
+</div>
+</div>
+
+<style>
+body {
+font-family: 'Arial', sans-serif;
+background-color: #3498db; /* Updated to a shade of blue */
+margin: 0;
+color: #fff; /* Text color */
+}
+
+.container {
+max-width: 800px;
+margin: 50px auto;
+padding: 20px;
+background-color: #fff;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+display: flex; 
+}
+.logo-container {
+  margin-right: 10px; 
+}
+
+.logo {
+  max-width: 80px; 
+  height: auto;
+}
+.logo-text {
+  font-size: 16px;
+  color: #333;
+  margin-top: 5px;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  transition: color 0.3s ease-in-out;
+  padding: 10px;
+  background-color: #f8f8f8; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  display: inline-block; 
+}
+
+.logo-text:hover {
+  color: #ff4500;
+  background-color: #fff; 
+  border-color: #ff4500; 
+}
+
+
+.message-box {
+border: 1px solid #ccc;
+border-radius: 8px;
+overflow: hidden;
+background-color: #fff; 
+}
+
+h2 {
+background-color: #2980b9; 
+color: white;
+padding: 10px;
+margin: 0;
+}
+.background-widgets {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: brightness(120%) saturate(120%);
+}
+
+.widget {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 5s infinite;
+}
+
+.widget:nth-child(2) {
+  width: 60px;
+  height: 60px;
+  top: 30%;
+  left: 20%;
+}
+
+.widget:nth-child(3) {
+  width: 40px;
+  height: 40px;
+  top: 60%;
+  left: 70%;
+}
+
+.widget:nth-child(4) {
+  width: 80px;
+  height: 80px;
+  top: 80%;
+  left: 40%;
+}
+
+.widget:nth-child(5) {
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+}
+
+.widget:nth-child(6) {
+  width: 70px;
+  height: 70px;
+  top: 70%;
+  left: 30%;
+}
+
+.widget:nth-child(7) {
+  width: 90px;
+  height: 90px;
+  top: 40%;
+  left: 60%;
+}
+
+.widget:nth-child(8) {
+  width: 30px;
+  height: 30px;
+  top: 20%;
+  left: 80%;
+}
+
+.widget:nth-child(9) {
+  width: 60px;
+  height: 60px;
+  top: 70%;
+  left: 20%;
+}
+
+.widget:nth-child(10) {
+  width: 40px;
+  height: 40px;
+  top: 90%;
+  left: 80%;
+}
+
+@keyframes float {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-20px);
+  }
+}
+.messages {
+height: 300px;
+overflow-y: scroll;
+padding: 10px;
+}
+
+.text {
+margin-bottom: 10px;
+}
+.you-message {
+  text-align: right;
+  color: 	#00b4d8; 
+}
+
+.other-message {
+  text-align: left;
+  color: #77ab59; 
+}
+
+.text img, .text video {
+max-width: 100%;
+border-radius: 8px;
+}
+
+.inputs {
+display: flex;
+justify-content: space-between;
+padding: 10px;
+background-color: #eee;
+border-top: 1px solid #ccc;
+}
+
+input[type="text"] {
+flex-grow: 1;
+padding: 8px;
+margin-right: 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+.file-label {
+  display: flex;
+  align-items: center;
+  background-color: #2980b9;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.file-label:hover {
+  background-color: #2474a7; 
+}
+
+#image-input {
+  display: none;
+}
+
+#send-btn {
+  background-color: #27ae60;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: background-color 0.3s ease;
+}
+
+#send-btn i {
+  margin-left: 5px;
+}
+
+#send-btn:hover {
+  background-color: #219d53; /* Darker shade on hover */
+}
+</style>
+</head>
+<body>
+
+    <div class="background-widgets">
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+    </div>
+    <script type="text/javascript">
+      const socketio = io();
+      const messages = document.getElementById("messages");
+    
+      const createMessage = (name, message, type) => {
+        let content = '';
+        if (type === 'text') {
+          if (name === '{{ session["name"] }}') {
+            content = `
+              <div class="text you-message">
+                <span><strong>You</strong>: ${message}</span>
+                <span class="muted">${new Date().toLocaleString()}</span>
+              </div>
+            `;
+          } else {
+            messageClass = 'other-message';
+      content = `
+        <div class="text ${messageClass}">
+          <span><strong>${name}</strong>: ${message}</span>
+          <span class="muted">${new Date().toLocaleString()}</span>
+        </div>
+      `;
+          }
+        } else if (type === 'image') {
+          if (name === '{{ session["name"] }}') {
+            content = `
+              <div class="text you-message">
+                <span><strong>You</strong>: </span>
+                <img src="${message}" alt="Sent Image" class="sent-image" />
+                <span class="muted">${new Date().toLocaleString()}</span>
+              </div>
+            `;
+          } else {
+            messageClass = 'other-message';
+
+            content = `
+            <div class="text ${messageClass}">
+              <span><strong>${name}</strong>: </span>
+                <img src="${message}" alt="Sent Image" class="sent-image" />
+                <span class="muted">${new Date().toLocaleString()}</span>
+              </div>
+            `;
+          }
+        }
+    
+        messages.innerHTML += content;
+      };
+    
+      socketio.on("message", (data) => {
+        createMessage(data.name, data.message, data.type);
+      });
+    
+      const sendMessage = () => {
+        const messageInput = document.getElementById("message");
+        const imageInput = document.getElementById("image-input");
+        const message = messageInput.value;
+        const file = imageInput.files[0];
+      
+        if (message === '' && !file) return;
+      
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const imageData = event.target.result;
+            socketio.emit("message", { message: imageData, type: 'image' });
+          };
+          reader.readAsDataURL(file);
+          imageInput.value = null;
+        } else {
+          socketio.emit("message", { message: message, type: 'text' });
+        }
+      
+        messageInput.value = '';
+      };
+      
+    </script>
+{% for msg in messages %}
+  <script type="text/javascript">
+    createMessage("{{ msg.name }}", "{{ msg.message }}", "{{ msg.type }}");
+  </script>
+{% endfor %}
+{% endblock %}
+</body>
+</html>

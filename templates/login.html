@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui-css/semantic.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #3498db;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .background-widgets {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            filter: brightness(120%) saturate(120%);
+        }
+        
+
+        .widget {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 5s infinite;
+        }
+
+        .widget:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 30%;
+            left: 20%;
+        }
+
+        .widget:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            top: 60%;
+            left: 70%;
+        }
+
+        .widget:nth-child(4) {
+            width: 80px;
+            height: 80px;
+            top: 80%;
+            left: 40%;
+        }
+
+        .widget:nth-child(5) {
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            left: 50%;
+        }
+
+        .widget:nth-child(6) {
+            width: 70px;
+            height: 70px;
+            top: 70%;
+            left: 30%;
+        }
+        .widget:nth-child(7) {
+            width: 90px;
+            height: 90px;
+            top: 40%;
+            left: 60%;
+        }
+
+        .widget:nth-child(8) {
+            width: 30px;
+            height: 30px;
+            top: 20%;
+            left: 80%;
+        }
+
+        .widget:nth-child(9) {
+            width: 60px;
+            height: 60px;
+            top: 70%;
+            left: 20%;
+        }
+
+        .widget:nth-child(10) {
+            width: 40px;
+            height: 40px;
+            top: 90%;
+            left: 80%;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 680px;
+            width: 220%;
+        }
+
+        .login-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            flex: 1;
+            z-index: 1;
+        }
+
+        .animation-container {
+            background-color: rgba(255, 255, 255, 0.76);
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            flex: 1;
+            margin-left: 90px; 
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo img {
+            max-width: 80px;
+            height: auto;
+        }
+
+        .ui.form input,
+        .ui.form button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .ui.form button {
+            background: linear-gradient(to right, #2980b9, #3498db);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 1s ease, transform 1s ease, box-shadow 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.8);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        .ui.form button:hover {
+            background: linear-gradient(to right, #2c3e50, #2980b9);
+            transform: translateY(-2px) rotate(3deg);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .ui.form button:active {
+            transform: scale(0.98) translateY(2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .animation-part {
+            position: relative;
+            flex: 1;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 10px;
+            color: #2c3e50;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-widgets">
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+    </div>
+    <div class="main-container">
+        <div class="login-form">
+            <div class="ui form">
+                <h1>Login</h1>
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='logo2.png') }}" alt="Logo2">
+                </div>
+                {% if error_message %}
+                    <div class="ui negaztive message">
+                        <p>{{ error_message }}</p>
+                    </div>
+                {% endif %}
+                <form method="post">
+                    <div class="field">
+                        <label>Email:</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="field">
+                        <label>Password:</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit" class="ui primary button">Login</button>
+                </form>
+                <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+            </div>
+        </div>
+        <div class="animation-container">
+            <iframe id="gifFrame" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+        </div>
+        
+        <script>
+            // Construct the URL for the GIF using Flask's url_for
+            const gifUrl = "{{ url_for('static', filename='ezgif.com-resize44.gif') }}";
+        
+            const iframe = document.getElementById('gifFrame');
+            iframe.src = gifUrl;
+        </script>
+    </div>
+</body>
+</html>

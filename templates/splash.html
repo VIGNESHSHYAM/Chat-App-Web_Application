@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Splash Screen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #3498db; /* WhatsApp green color */
+            color: #fff;
+            overflow: hidden; /* Hide potential overflow from the body */
+        }
+
+        .splash-screen {
+            text-align: center;
+            position: relative;
+            z-index: 1; /* Ensure the content stays above the background */
+        }
+
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('pattern.png') repeat; /* Add your pattern image */
+            opacity: 0.2; /* Adjust the opacity as needed */
+            z-index: 0; /* Place the pattern behind the content */
+        }
+
+        .logo {
+            max-width: 100px;
+            height: auto;
+            opacity: 0; /* Set initial opacity to 0 */
+            animation: fadeInLogo 3.5s forwards; /* Fade in animation */
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        .background-widgets {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            filter: brightness(120%) saturate(120%);
+        }
+
+        .widget {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 5s infinite;
+        }
+
+        .widget:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 30%;
+            left: 20%;
+        }
+
+        .widget:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            top: 60%;
+            left: 70%;
+        }
+
+        .widget:nth-child(4) {
+            width: 80px;
+            height: 80px;
+            top: 80%;
+            left: 40%;
+        }
+
+        .widget:nth-child(5) {
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            left: 50%;
+        }
+
+        .widget:nth-child(6) {
+            width: 70px;
+            height: 70px;
+            top: 70%;
+            left: 30%;
+        }
+        .widget:nth-child(7) {
+            width: 90px;
+            height: 90px;
+            top: 40%;
+            left: 60%;
+        }
+
+        .widget:nth-child(8) {
+            width: 30px;
+            height: 30px;
+            top: 20%;
+            left: 80%;
+        }
+
+        .widget:nth-child(9) {
+            width: 60px;
+            height: 60px;
+            top: 70%;
+            left: 20%;
+        }
+
+        .widget:nth-child(10) {
+            width: 40px;
+            height: 40px;
+            top: 90%;
+            left: 80%;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes fadeInLogo {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-widgets">
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+        <div class="widget"></div>
+    </div>
+    <div class="splash-screen">
+        <img src="{{ url_for('static', filename='logo2.png') }}" alt="WhatsApp Logo" class="logo">
+        <h1>Chat application</h1>
+    </div>
+    <script>
+        setTimeout(function () {
+            window.location.href = "/login";  
+        }, 3500);  
+    </script>
+</body>
+</html>
